@@ -58,27 +58,28 @@ class DownloadController extends Controller
         $materi = \App\Models\Materi::findOrFail($id_materi);
 
         if (!$materi->file_materi) {
-            abort(404, 'Materi ini tidak memiliki lampiran berkas.');
+            return back()->with('error', 'Materi ini tidak menyertakan lampiran berkas.');
         }
 
-        // 1. Cek pada disk public
-        if (Storage::disk('public')->exists($materi->file_materi)) {
-            $path = Storage::disk('public')->path($materi->file_materi);
-            return response()->file($path);
+        $possiblePaths = [
+            Storage::disk('public')->path($materi->file_materi),
+            Storage::disk('local')->path($materi->file_materi),
+            storage_path('app/public/' . $materi->file_materi),
+            storage_path('app/' . $materi->file_materi),
+            public_path('storage/' . $materi->file_materi),
+            base_path('storage/app/public/' . $materi->file_materi),
+            resource_path('initial_storage/public/' . $materi->file_materi),
+        ];
+
+        foreach ($possiblePaths as $path) {
+            if ($path && file_exists($path)) {
+                $filename = basename($materi->file_materi);
+                return response()->file($path, [
+                    'Content-Disposition' => 'inline; filename="' . $filename . '"',
+                ]);
+            }
         }
 
-        // 2. Fallback cek pada disk local / private
-        if (Storage::disk('local')->exists($materi->file_materi)) {
-            $path = Storage::disk('local')->path($materi->file_materi);
-            return response()->file($path);
-        }
-
-        // 3. Fallback cek di storage_path langsung
-        $directPath = storage_path('app/public/' . $materi->file_materi);
-        if (file_exists($directPath)) {
-            return response()->file($directPath);
-        }
-
-        abort(404, 'Berkas materi fisik tidak ditemukan di server.');
+        return back()->with('error', 'Berkas lampiran "' . basename($materi->file_materi) . '" untuk materi "' . $materi->judul . '" tidak ditemukan di server.');
     }
 }

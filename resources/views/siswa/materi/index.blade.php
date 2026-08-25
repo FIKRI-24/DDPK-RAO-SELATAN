@@ -78,10 +78,18 @@
 
                     <!-- Card Footer Action -->
                     <div class="card-footer bg-white border-0 px-4 pb-4 pt-0">
-                        <a href="{{ route('siswa.materi.show', $item->id_materi) }}" class="btn btn-primary w-100 fw-bold py-2 shadow-sm d-flex align-items-center justify-content-center gap-2">
-                            <span>Pelajari Materi Lengkap</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-                        </a>
+                        <div class="d-flex gap-2">
+                            <a href="{{ route('siswa.materi.show', $item->id_materi) }}" class="btn btn-primary flex-grow-1 fw-bold py-2 shadow-sm d-flex align-items-center justify-content-center gap-2">
+                                <span>Pelajari Materi</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                            </a>
+                            @if($item->file_materi)
+                                <a href="{{ route('materi.unduh', $item->id_materi) }}" target="_blank" class="btn btn-outline-primary fw-bold px-3 py-2 shadow-sm d-flex align-items-center justify-content-center gap-1" title="Unduh Berkas Lampiran">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                    <span class="small d-none d-sm-inline">Unduh</span>
+                                </a>
+                            @endif
+                        </div>
                     </div>
                 </div>
             </div>

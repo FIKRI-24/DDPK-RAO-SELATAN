@@ -57,22 +57,31 @@
 
                 <!-- File Attachment Box (if exists) -->
                 @if($materi->file_materi)
-                    <div class="card border-0 rounded-3 p-4 mt-5" style="background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border: 1.5px solid #bfdbfe !important;">
-                        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
-                            <div class="d-flex align-items-center gap-3">
-                                <div class="p-3 bg-primary text-white rounded-3 d-flex align-items-center justify-content-center shadow-sm" style="width: 48px; height: 48px;">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-                                </div>
-                                <div>
-                                    <h6 class="fw-bold mb-1 text-primary">Berkas Dokumen / Modul PDF</h6>
-                                    <p class="small text-muted mb-0 fw-medium">{{ basename($materi->file_materi) }}</p>
-                                </div>
+                    <div class="card border-0 rounded-4 mt-5 shadow-sm overflow-hidden" style="background: #ffffff; border: 1.5px solid #c7d2fe !important;">
+                        <div class="card-header border-0 py-3 px-4 d-flex align-items-center justify-content-between" style="background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);">
+                            <div class="d-flex align-items-center gap-2 text-white">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                                <span class="fw-bold fs-6">Berkas Lampiran Modul Pembelajaran</span>
                             </div>
-                            <div>
-                                <a href="{{ route('materi.unduh', $materi->id_materi) }}" target="_blank" class="btn btn-primary fw-bold px-4 py-2 shadow-sm d-flex align-items-center gap-2 text-nowrap">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                                    <span>Unduh Modul</span>
-                                </a>
+                            <span class="badge bg-white text-primary fw-bold px-2.5 py-1 rounded-pill small">Lampiran Resmi</span>
+                        </div>
+                        <div class="card-body p-4 bg-light bg-opacity-50">
+                            <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="p-3 bg-primary bg-opacity-10 text-primary rounded-3 d-flex align-items-center justify-content-center border border-primary border-opacity-25" style="width: 48px; height: 48px; min-width: 48px;">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                                    </div>
+                                    <div>
+                                        <h6 class="fw-bold text-dark mb-1 text-break">{{ basename($materi->file_materi) }}</h6>
+                                        <p class="small text-muted mb-0 fw-medium">Klik tombol di samping untuk membaca modul atau menyimpannya di perangkat Anda.</p>
+                                    </div>
+                                </div>
+                                <div class="flex-shrink-0">
+                                    <a href="{{ route('materi.unduh', $materi->id_materi) }}" target="_blank" class="btn btn-primary btn-lg fw-bold px-4 py-2.5 shadow-sm d-inline-flex align-items-center gap-2 text-nowrap">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                        <span>Buka / Unduh Modul</span>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
