@@ -57,7 +57,7 @@
                                         {{ basename($materi->file_materi) }}
                                     </span>
                                 </div>
-                                <a href="{{ asset('storage/' . $materi->file_materi) }}" target="_blank" class="btn btn-sm btn-outline-primary px-3">
+                                <a href="{{ route('materi.unduh', $materi->id_materi) }}" target="_blank" class="btn btn-sm btn-outline-primary px-3">
                                     Buka Lampiran
                                 </a>
                             </div>

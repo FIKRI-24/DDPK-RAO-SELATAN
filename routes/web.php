@@ -102,6 +102,7 @@ Route::prefix('siswa')->middleware('auth.siswa')->group(function () {
     Route::get('/petunjuk', [SiswaPetunjukController::class, 'index'])->name('siswa.petunjuk.index');
 });
 
-// Route unduhan jawaban aman (diakses oleh Guru atau Siswa terverifikasi)
+// Route unduhan berkas materi dan jawaban aman (diakses oleh Guru atau Siswa terverifikasi)
 Route::get('/jawaban/unduh/{id_hasil}', [\App\Http\Controllers\DownloadController::class, 'unduhJawaban'])->name('jawaban.unduh');
+Route::get('/materi/unduh/{id_materi}', [\App\Http\Controllers\DownloadController::class, 'unduhMateri'])->name('materi.unduh');
 

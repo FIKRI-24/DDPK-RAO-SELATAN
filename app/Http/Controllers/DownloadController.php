@@ -44,4 +44,41 @@ class DownloadController extends Controller
 
         return Storage::disk('local')->download($hasil->file_jawaban);
     }
+
+    /**
+     * Mengunduh berkas materi secara aman dan terjamin langsung melalui PHP response.
+     */
+    public function unduhMateri($id_materi)
+    {
+        // Pastikan pengguna sudah login baik sebagai Guru maupun Siswa
+        if (!Auth::guard('guru')->check() && !Auth::guard('siswa')->check()) {
+            abort(401, 'Silakan login terlebih dahulu untuk mengakses berkas materi.');
+        }
+
+        $materi = \App\Models\Materi::findOrFail($id_materi);
+
+        if (!$materi->file_materi) {
+            abort(404, 'Materi ini tidak memiliki lampiran berkas.');
+        }
+
+        // 1. Cek pada disk public
+        if (Storage::disk('public')->exists($materi->file_materi)) {
+            $path = Storage::disk('public')->path($materi->file_materi);
+            return response()->file($path);
+        }
+
+        // 2. Fallback cek pada disk local / private
+        if (Storage::disk('local')->exists($materi->file_materi)) {
+            $path = Storage::disk('local')->path($materi->file_materi);
+            return response()->file($path);
+        }
+
+        // 3. Fallback cek di storage_path langsung
+        $directPath = storage_path('app/public/' . $materi->file_materi);
+        if (file_exists($directPath)) {
+            return response()->file($directPath);
+        }
+
+        abort(404, 'Berkas materi fisik tidak ditemukan di server.');
+    }
 }

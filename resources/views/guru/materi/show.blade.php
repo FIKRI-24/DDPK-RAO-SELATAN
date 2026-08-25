@@ -35,7 +35,7 @@
                                 <h6 class="fw-bold mb-1 text-primary">📄 Berkas Lampiran Materi</h6>
                                 <p class="small text-muted mb-0">{{ basename($materi->file_materi) }}</p>
                             </div>
-                            <a href="{{ asset('storage/' . $materi->file_materi) }}" target="_blank" class="btn btn-primary px-4">
+                            <a href="{{ route('materi.unduh', $materi->id_materi) }}" target="_blank" class="btn btn-primary px-4">
                                 Buka / Unduh File
                             </a>
                         </div>

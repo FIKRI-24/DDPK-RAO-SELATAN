@@ -248,3 +248,43 @@ test('guru who does not own the assignment cannot download it', function () {
 
     $response->assertStatus(403);
 });
+
+test('logged in siswa and guru can download materi file via materi.unduh', function () {
+    Storage::fake('public');
+    Storage::disk('public')->put('materi/test_materi.pdf', 'PDF CONTENT');
+
+    $guru = Guru::create([
+        'nip' => '123456789012345678',
+        'nama' => 'Guru 1',
+        'username' => 'guru_materi',
+        'password' => Hash::make('password'),
+    ]);
+
+    $siswa = Siswa::create([
+        'nisn' => '1234567890',
+        'nama' => 'Siswa Materi',
+        'kelas' => 'Kelas X',
+        'username' => 'siswa_materi',
+        'password' => Hash::make('password'),
+    ]);
+
+    $materi = Materi::create([
+        'id_guru' => $guru->id_guru,
+        'judul' => 'Materi PDF Test',
+        'isi_materi' => 'Konten materi test',
+        'file_materi' => 'materi/test_materi.pdf',
+        'tgl_upload' => now(),
+    ]);
+
+    // Guest cannot download
+    $resGuest = $this->get(route('materi.unduh', $materi->id_materi));
+    $resGuest->assertStatus(401);
+
+    // Siswa can download
+    $resSiswa = $this->actingAs($siswa, 'siswa')->get(route('materi.unduh', $materi->id_materi));
+    $resSiswa->assertStatus(200);
+
+    // Guru can download
+    $resGuru = $this->actingAs($guru, 'guru')->get(route('materi.unduh', $materi->id_materi));
+    $resGuru->assertStatus(200);
+});
