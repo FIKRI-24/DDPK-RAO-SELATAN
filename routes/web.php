@@ -9,7 +9,9 @@ use App\Http\Controllers\Guru\TugasController as GuruTugasController;
 use App\Http\Controllers\Siswa\TugasController as SiswaTugasController;
 use App\Http\Controllers\Guru\PenilaianController;
 use App\Http\Controllers\Guru\RekapProgresController;
+use App\Http\Controllers\Guru\PetunjukController as GuruPetunjukController;
 use App\Http\Controllers\Siswa\NilaiController;
+use App\Http\Controllers\Siswa\PetunjukController as SiswaPetunjukController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -74,6 +76,9 @@ Route::prefix('guru')->middleware('auth.guru')->group(function () {
     // Rekap Progres Guru
     Route::get('/rekap-progres', [RekapProgresController::class, 'index'])->name('guru.rekap.index');
     Route::get('/rekap-progres/siswa/{id_siswa}', [RekapProgresController::class, 'show'])->name('guru.rekap.show');
+
+    // Petunjuk Penggunaan Guru
+    Route::get('/petunjuk', [GuruPetunjukController::class, 'index'])->name('guru.petunjuk.index');
 });
 
 // Siswa routes
@@ -92,4 +97,11 @@ Route::prefix('siswa')->middleware('auth.siswa')->group(function () {
     // Nilai & Progres Siswa
     Route::get('/nilai-progres', [NilaiController::class, 'index'])->name('siswa.nilai.index');
     Route::get('/nilai-progres/tugas/{id_tugas}', [NilaiController::class, 'show'])->name('siswa.nilai.show');
+
+    // Petunjuk Penggunaan Siswa
+    Route::get('/petunjuk', [SiswaPetunjukController::class, 'index'])->name('siswa.petunjuk.index');
 });
+
+// Route unduhan jawaban aman (diakses oleh Guru atau Siswa terverifikasi)
+Route::get('/jawaban/unduh/{id_hasil}', [\App\Http\Controllers\DownloadController::class, 'unduhJawaban'])->name('jawaban.unduh');
+

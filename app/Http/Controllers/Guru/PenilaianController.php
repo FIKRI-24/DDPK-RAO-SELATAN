@@ -87,7 +87,11 @@ class PenilaianController extends Controller
 
     /**
      * Update/Simpan nilai tugas.
+     * scope utama adalah guru login yang menilai pengumpulan siswa milikanya sendiri   
      */
+
+
+    
     public function update(Request $request, $id_hasil)
     {
         $guru = Auth::guard('guru')->user();

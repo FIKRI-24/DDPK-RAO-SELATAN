@@ -13,9 +13,12 @@
     <div class="d-flex" id="wrapper">
         <!-- Sidebar -->
         <div id="sidebar-wrapper" class="border-end">
-            <div class="sidebar-heading fw-bold py-3 px-4 d-flex align-items-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/><path d="M6 6h10"/><path d="M6 10h10"/><path d="M13 14h3"/></svg>
-                <span>Media DDPK</span>
+            <div class="sidebar-heading fw-bold py-3 px-3 d-flex align-items-center gap-2 border-bottom">
+                <img src="{{ asset('images/logo-smkn1-raoselatan.png') }}" alt="Logo SMKN 1 Rao Selatan" style="width: 38px; height: 38px; object-fit: contain;">
+                <div>
+                    <span class="fs-6 fw-extrabold d-block lh-1" style="color: #fde047 !important; letter-spacing: -0.01em;">Media DDPK</span>
+                    <span class="fw-semibold" style="font-size: 0.72rem; color: #bbf7d0 !important;">SMKN 1 Rao Selatan</span>
+                </div>
             </div>
             <div class="list-group list-group-flush mt-2">
                 @if(Auth::guard('guru')->check())
@@ -43,6 +46,10 @@
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-2"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg>
                         Rekap Progres
                     </a>
+                    <a href="{{ route('guru.petunjuk.index') }}" class="list-group-item list-group-item-action py-3 {{ Route::is('guru.petunjuk.*') ? 'active' : '' }}">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                        Petunjuk Penggunaan
+                    </a>
                 @elseif(Auth::guard('siswa')->check())
                     <a href="{{ route('siswa.dashboard') }}" class="list-group-item list-group-item-action py-3 {{ Route::is('siswa.dashboard') ? 'active' : '' }}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-2"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg>
@@ -60,6 +67,10 @@
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-2"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg>
                         Nilai & Progres
                     </a>
+                    <a href="{{ route('siswa.petunjuk.index') }}" class="list-group-item list-group-item-action py-3 {{ Route::is('siswa.petunjuk.*') ? 'active' : '' }}">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                        Petunjuk Penggunaan
+                    </a>
                 @endif
             </div>
         </div>
@@ -75,6 +86,18 @@
                     </button>
                     
                     <div class="ms-auto d-flex align-items-center">
+                        @if(Auth::guard('guru')->check())
+                            <a href="{{ route('guru.petunjuk.index') }}" class="btn btn-outline-primary btn-sm d-flex align-items-center gap-1 me-3" title="Petunjuk Penggunaan">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                                <span class="d-none d-sm-inline">Bantuan</span>
+                            </a>
+                        @elseif(Auth::guard('siswa')->check())
+                            <a href="{{ route('siswa.petunjuk.index') }}" class="btn btn-outline-primary btn-sm d-flex align-items-center gap-1 me-3" title="Petunjuk Penggunaan">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                                <span class="d-none d-sm-inline">Bantuan</span>
+                            </a>
+                        @endif
+
                         <span class="navbar-text me-3 fw-medium text-dark d-flex align-items-center gap-2">
                             <span class="avatar bg-blue-lt text-primary fw-bold d-flex align-items-center justify-content-center" style="width: 32px; height: 32px; border-radius: 50%; background-color: rgba(32, 107, 196, 0.1); font-size: 0.85rem;">
                                 @if(Auth::guard('guru')->check())

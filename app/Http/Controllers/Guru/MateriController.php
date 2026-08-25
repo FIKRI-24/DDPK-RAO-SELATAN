@@ -144,7 +144,7 @@ class MateriController extends Controller
             foreach ($materi->tugas as $tugas) {
                 foreach ($tugas->hasil as $hasil) {
                     if ($hasil->file_jawaban) {
-                        Storage::disk('public')->delete($hasil->file_jawaban);
+                        Storage::disk('local')->delete($hasil->file_jawaban);
                     }
                 }
             }

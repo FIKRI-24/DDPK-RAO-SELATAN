@@ -91,6 +91,7 @@ class RekapProgresController extends Controller
                 $item->tgl_kumpul = null;
                 $item->nilai = null;
             } else {
+                $item->id_hasil = $item_hasil->id_hasil;
                 $item->file_jawaban = $item_hasil->file_jawaban;
                 $item->tgl_kumpul = $item_hasil->tgl_kumpul;
                 

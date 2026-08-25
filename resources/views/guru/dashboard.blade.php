@@ -143,4 +143,28 @@
         </div>
     </div>
 </div>
+
+<!-- Quick Help / Petunjuk Banner -->
+<div class="row mt-2">
+    <div class="col-12">
+        <div class="card border-0 shadow-sm rounded-3 bg-white p-4">
+            <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="p-3 bg-primary bg-opacity-10 text-primary rounded-circle">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                    </div>
+                    <div>
+                        <h5 class="fw-bold mb-1 text-dark">Butuh Panduan Penggunaan Sistem?</h5>
+                        <p class="mb-0 fw-medium" style="color: #334155; font-size: 0.9rem;">Pelajari cara mengelola data siswa, membuat materi & tugas, serta melakukan penilaian dan rekapitulasi progres belajar.</p>
+                    </div>
+                </div>
+                <div>
+                    <a href="{{ route('guru.petunjuk.index') }}" class="btn btn-primary fw-semibold px-4 text-nowrap">
+                        Buka Petunjuk Penggunaan &rarr;
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection

@@ -56,7 +56,7 @@
                                             <span class="small text-truncate me-2" style="max-width: 150px;">
                                                 📂 {{ basename($item->file_jawaban) }}
                                             </span>
-                                            <a href="{{ Storage::url($item->file_jawaban) }}" target="_blank" class="btn btn-sm btn-link py-0">
+                                            <a href="{{ route('jawaban.unduh', $item->id_hasil) }}" target="_blank" class="btn btn-sm btn-link py-0">
                                                 Unduh
                                             </a>
                                         </div>

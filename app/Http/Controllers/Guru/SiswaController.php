@@ -126,7 +126,7 @@ class SiswaController extends Controller
             // Hapus file jawaban fisik milik siswa ini sebelum hapus data
             foreach ($siswa->hasil as $hasil) {
                 if ($hasil->file_jawaban) {
-                    Storage::disk('public')->delete($hasil->file_jawaban);
+                    Storage::disk('local')->delete($hasil->file_jawaban);
                 }
             }
 

@@ -66,11 +66,11 @@ class TugasController extends Controller
 
             // Jika ada file lama di storage, hapus
             if ($hasil->file_jawaban) {
-                Storage::disk('public')->delete($hasil->file_jawaban);
+                Storage::disk('local')->delete($hasil->file_jawaban);
             }
 
             // Simpan file baru
-            $filePath = $request->file('file_jawaban')->store('jawaban', 'public');
+            $filePath = $request->file('file_jawaban')->store('jawaban', 'local');
 
             $hasil->file_jawaban = $filePath;
             $hasil->tgl_kumpul = now();

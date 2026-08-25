@@ -75,7 +75,7 @@
                                             {{ $item->tgl_kumpul ? \Carbon\Carbon::parse($item->tgl_kumpul)->format('d M Y H:i') : '-' }}
                                         </td>
                                         <td class="pe-4 text-end">
-                                            <a href="{{ Storage::url($item->file_jawaban) }}" target="_blank" class="btn btn-sm btn-primary">
+                                            <a href="{{ route('jawaban.unduh', $item->id_hasil) }}" target="_blank" class="btn btn-sm btn-primary">
                                                 Unduh Jawaban
                                             </a>
                                         </td>
