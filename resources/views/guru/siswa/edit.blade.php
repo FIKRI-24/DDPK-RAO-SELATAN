@@ -42,13 +42,21 @@
                         @enderror
                     </div>
 
-                    {{-- Kelas --}}
+                    {{-- Kelas (Terkunci Otomatis untuk Kelas X) --}}
                     <div class="mb-4">
                         <label for="kelas" class="form-label fw-bold d-flex align-items-center gap-1">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><path d="M22 10v6M2 10v6M22 10l-10-5-10 5 10 5z"/><path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"/></svg>
                             <span>Kelas</span>
+                            <span class="badge bg-secondary-subtle text-secondary small ms-1">Terkunci</span>
                         </label>
-                        <input type="text" class="form-control @error('kelas') is-invalid @enderror" id="kelas" name="kelas" value="{{ old('kelas', $siswa->kelas) }}" required placeholder="Contoh: X-1, X-2, dll.">
+                        <div class="input-group">
+                            <input type="text" class="form-control bg-light fw-bold text-dark @error('kelas') is-invalid @enderror" id="kelas" name="kelas" value="Kelas X" readonly required>
+                            <span class="input-group-text bg-light text-muted small">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-1"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                                Sasaran Kelas DDPK
+                            </span>
+                        </div>
+                        <small class="text-muted mt-1 d-block">Media pembelajaran ini dikhususkan untuk siswa <strong>Kelas X</strong> SMK Negeri 1 Rao Selatan.</small>
                         @error('kelas')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
